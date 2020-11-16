@@ -1,7 +1,12 @@
-// 测试：js的Object的解构赋值
-
-let obj = { a: { b: 123 } };
-let obj2 = { ...obj };
-// let obj2 = obj;
-obj2.a = { b: 2 };
-console.log(obj, obj2);
+// 测试：js的Object的
+// 扩展运算符
+// let obj = { a: { b: 123 } };
+// let obj2 = { ...obj }; // 返回新的对象
+// // let obj2 = obj; // 使用的引用
+// obj2.a = { b: 2 };
+// console.log(obj, obj2);
+// 解构赋值
+let obj1 = { a: { b: 2 } };
+let { ...x } = obj1;
+obj1.a.b = 3;
+console.log(x);
