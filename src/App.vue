@@ -1,12 +1,14 @@
 <template>
   <div>
+    <h3>Widget:</h3>
     <div>
-      <span class="test">arcgis</span>
-      <div>Count: {{ state.count }}</div>
-      <div>Double: {{ state.double }}</div>
-      <button @click="increment">COUNT++</button>
+      <div>
+        <label
+          >Zoom<input type="checkbox" @change="chekcWidget('zoom')"
+        /></label>
+      </div>
     </div>
-    <Map />
+    <Map :widgets="state.widgets" />
   </div>
 </template>
 
@@ -14,21 +16,17 @@
 import { loadModules } from "esri-loader";
 import { computed, onMounted, reactive } from "vue";
 import Map from "@/components/Map";
-import useStore from "@/store/useStore";
 export default {
   components: { Map },
   setup() {
     const state = reactive({
-      count: 0,
-      double: computed(() => state.count * 2),
-      age: "arcgis",
+      widgets: {},
     });
-    function increment() {
-      state.count++;
-    }
     return {
       state,
-      increment,
+      chekcWidget(widget) {
+        state.widgets[widget] = !state.widgets[widget];
+      },
     };
   },
 };
