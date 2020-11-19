@@ -3,12 +3,13 @@
     <h3>Widget:</h3>
     <div>
       <div>
-        <label
-          >Zoom<input type="checkbox" @change="chekcWidget('zoom')"
-        /></label>
+        <label>
+          Zoom
+          <input type="checkbox" checked @change="chekcWidget('useZoom')" />
+        </label>
       </div>
     </div>
-    <Map :widgets="state.widgets" />
+    <Map :widgets="state" />
   </div>
 </template>
 
@@ -24,8 +25,8 @@ export default {
     });
     return {
       state,
-      chekcWidget(widget) {
-        state.widgets[widget] = !state.widgets[widget];
+      chekcWidget(type) {
+        state.widgets[type] = !state.widgets[type];
       },
     };
   },
