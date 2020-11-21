@@ -1,26 +1,43 @@
 <script>
-import { defineComponent, onMounted, reactive, watch } from "vue";
+import {
+  defineComponent,
+  getCurrentInstance,
+  onMounted,
+  reactive,
+  watch,
+} from "vue";
 import useMap from "@/arcgis/map/useMap";
-import useZoom from "@/arcgis/widget/useZoom";
-import "./index.scss";
+import { widgetFn } from "@/arcgis/widget/use";
 export default defineComponent({
   props: ["widgets"],
-  render(state) {
+  render() {
     return <div id="map"></div>;
   },
   setup(props, ctx) {
     let { widgets } = props;
+
     useMap();
     watch(
-      () => widgets,
-      ({ widgets }) => {
-        updateWidgets(widgets);
+      () => props.widgets,
+      (nV, oV) => {
+        for (const key in nV) {
+          let isToggled = nV[key] !== oV[key];
+          console.log(key, isToggled);
+          if (isToggled) {
+            widgetFn.use(key);
+          }
+        }
       },
       { deep: true }
     );
-    let updateWidgets = (hooks) => {
-      useZoom();
-    };
+    // TODO: props的属性直接watch为什么监听不到
+    // watch ()=>widgets，监听不到；  （）=> props.widgets ，能听到
   },
 });
 </script>
+<style lang="scss">
+#map {
+  flex: 1;
+  height: 100vh;
+}
+</style>

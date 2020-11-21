@@ -7,6 +7,7 @@
 // console.log(obj, obj2);
 // 解构赋值
 let obj1 = { a: { b: 2 }, c: 3 };
-let { d, ...x } = obj1;
-// obj1.a.b = 3;
-console.log(x, d);
+// let { d, ...x } = obj1;
+let { a } = obj1;
+obj1.a.b = 1;
+console.log(a);
