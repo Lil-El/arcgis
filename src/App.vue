@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <side-bar v-model:widgets="state.widgets" />
-    <Map :widgets="state.widgets" />
+    <side-bar />
+    <Map />
   </div>
 </template>
 

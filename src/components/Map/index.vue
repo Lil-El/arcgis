@@ -7,7 +7,7 @@ import {
   watch,
 } from "vue";
 import useMap from "@/arcgis/map/useMap";
-import { widgetFn } from "@/arcgis/widget/use";
+// import { widgetFn } from "@/arcgis/widget/use";
 export default defineComponent({
   props: ["widgets"],
   render() {
@@ -17,19 +17,18 @@ export default defineComponent({
     let { widgets } = props;
 
     useMap();
-    watch(
-      () => props.widgets,
-      (nV, oV) => {
-        for (const key in nV) {
-          let isToggled = nV[key] !== oV[key];
-          console.log(key, isToggled);
-          if (isToggled) {
-            widgetFn.use(key);
-          }
-        }
-      },
-      { deep: true }
-    );
+    // watch(
+    //   () => props.widgets,
+    //   (nV, oV) => {
+    //     for (const key in nV) {
+    //       let isToggled = nV[key] !== oV[key];
+    //       if (isToggled) {
+    //         widgetFn.use(key);
+    //       }
+    //     }
+    //   },
+    //   { deep: true }
+    // );
     // TODO: props的属性直接watch为什么监听不到
     // watch ()=>widgets，监听不到；  （）=> props.widgets ，能听到
   },

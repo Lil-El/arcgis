@@ -3,8 +3,12 @@ import useMap from "@/arcgis/map/useMap";
 
 export default () => {
   loadModules(["esri/widgets/Compass"]).then(([Compass]) => {
-    let { view } = useMap();
-    let compass = new Compass({ view, id: "compass" });
-    view.ui.add(compass, "top-left");
+    const { view } = useMap();
+    const compass = view.ui.find("compass");
+    if (compass) {
+      view.ui.remove("compass");
+    } else {
+      view.ui.add(new Compass({ view, id: "compass" }), "top-left");
+    }
   });
 };

@@ -1,51 +1,47 @@
+<template>
+  <div class="menu">
+    <div class="menu-item" v-for="opt in Object.keys(option)" :key="opt">
+      <div class="menu-title">
+        <span>{{opt}}</span>
+      </div>
+      <ul class="menu-list">
+        <li v-for="item in Object.keys(option[opt])" :key="item">
+          <label>
+            <template v-if="option[opt][item].type==='checkbox'">
+              <input
+                :type="option[opt][item].type"
+                :checked="option[opt][item].checked"
+                @change="option[opt][item].use"
+              />
+              {{option[opt][item].label}}
+            </template>
+            <template v-else>
+              <div>
+                <button @click="option[opt][item].use">{{option[opt][item].label}}</button>
+                <button @click="option[opt][item].unActive">unActive</button>
+                <button @click="option[opt][item].clear">clear</button>
+              </div>
+              <button></button>
+            </template>
+          </label>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
 <script>
 import { getCurrentInstance } from "vue";
+import option from "@/arcgis/option";
 export default {
-  props: ["widgets"],
-  inheritAttrs: false,
-  setup(props, { emit }) {
-    let { widgets } = props;
-    let chekcWidget = (type) => {
-      widgets = { ...widgets, [type]: !widgets[type] };
-      emit("update:widgets", widgets);
-    };
-    return () => (
-      <div class="menu">
-        <div class="menu-item">
-          <div class="menu-title">
-            <span>Widgets</span>
-          </div>
-          <ul class="menu-list">
-            <li>
-              <label>
-                <input
-                  type="checkbox"
-                  checked
-                  onChange={() => chekcWidget("zoom")}
-                />
-                Zoom
-              </label>
-            </li>
-            <li>
-              <label>
-                <input
-                  type="checkbox"
-                  onChange={() => chekcWidget("compass")}
-                />
-                Compass
-              </label>
-            </li>
-          </ul>
-        </div>
-      </div>
-    );
+  setup() {
+    return { option };
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .menu {
-  width: 180px;
+  width: 250px;
   .menu-item {
     .menu-title {
       padding: 0 10px;
