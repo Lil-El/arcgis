@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <div onclick="del()">delete</div>
+    <div onclick="change()">change</div>
+    <div lay-href="/iframe1" id="iframe1">Button</div>
+    <div lay-href="/iframe2" id="iframe2">Button2</div>
+  </div>
+  <script>
+    function del(){
+      let frames = window.frames;
+      frames[0].frameElement.remove();
+    }
+    function change(){
+      let frames = window.frames;
+      if(frames[0].frameElement.style.display==='none')
+        frames[0].frameElement.style.display = 'block';
+      else
+        frames[0].frameElement.style.display = 'none';
+    }
+    document.onclick = function(ev){
+      let ele = ev.target;
+      let href = ele.getAttribute('lay-href');
+      if(href){
+        let childHtml = document.createElement('iframe')
+        childHtml.src = `${href}.html`;
+        document.body.appendChild(childHtml)
+      }
+    }
+  </script>
+</body>
+</html>
