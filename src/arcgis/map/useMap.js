@@ -7,7 +7,7 @@ export default () => {
   if (store.map && store.view) return store;
 
   store.map = new Map({
-    basemap: "hybrid", // streets，hybrid
+    basemap: "hybrid", // streets，hybrid, topo-vector (需要连接 VPN)
   });
 
   store.view = new MapView({
