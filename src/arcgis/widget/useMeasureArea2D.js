@@ -1,8 +1,8 @@
-import { loadModules } from "esri-loader";
+import AreaMeasurement2D from "@arcgis/core/widgets/AreaMeasurement2D";
 import useMap from "@/arcgis/map/useMap";
 
 let events = [];
-let createWidget = (view, AreaMeasurement2D) => {
+let createWidget = (view) => {
   // CREATE：修改已有的线段，会触发viewModel.state，再次createWidget；使用该变量，使其不再触发
   let CREATE = true;
   const measurementWidget = new AreaMeasurement2D({ view });
@@ -15,18 +15,14 @@ let createWidget = (view, AreaMeasurement2D) => {
   measurementWidget.watch("viewModel.state", function(state) {
     if (state === "measured" && CREATE) {
       CREATE = false;
-      createWidget(view, AreaMeasurement2D);
+      createWidget(view);
     }
   });
 };
 
 export default function useMeasureArea2D() {
-  loadModules(["esri/widgets/AreaMeasurement2D"]).then(
-    ([AreaMeasurement2D]) => {
-      const { view } = useMap();
-      createWidget(view, AreaMeasurement2D);
-    }
-  );
+  const { view } = useMap();
+  createWidget(view);
 }
 export function unUseMeasureArea2D() {
   let widget = events[events.length - 1];
