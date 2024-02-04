@@ -11,6 +11,9 @@ import useWebTile from "./layer/useWebTile";
 import useTile from "./layer/useTile";
 import useFeature from "./layer/useFeature";
 import useImagery from "./layer/useImagery";
+import useMapImage from "./layer/useMapImage";
+import useFields from "./server/useFields";
+import { query, statistics } from "./server/useStatistics";
 
 const option = {
   widget: {
@@ -79,6 +82,29 @@ const option = {
       label: "Imagery",
       checked: false,
       use: useImagery,
+    },
+    mapImagery: {
+      type: "checkbox",
+      label: "MapImagery",
+      checked: false,
+      use: useMapImage,
+    },
+  },
+  server: {
+    queryField: {
+      type: "button",
+      label: "query field",
+      use: useFields,
+    },
+    query: {
+      type: "button",
+      label: "query dcpc",
+      use: query,
+    },
+    statistics: {
+      type: "button",
+      label: "statistics",
+      use: statistics,
     },
   },
 };

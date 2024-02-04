@@ -8,7 +8,7 @@ import useMap from "../map/useMap";
  * 2. Create featurelayer from client-side graphics（使用 source，展示客户端 graphics）
  */
 export default () => {
-  const { map, view } = useMap();
+  const { map } = useMap();
 
   if (map.findLayerById("FEATURE_LAYER")) {
     map.remove(map.findLayerById("FEATURE_LAYER"));

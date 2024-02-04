@@ -18,8 +18,8 @@
             <template v-else>
               <div>
                 <button @click="option[opt][item].use">{{option[opt][item].label}}</button>
-                <button @click="option[opt][item].unActive">unActive</button>
-                <button @click="option[opt][item].clear">clear</button>
+                <button v-if="option[opt][item].unActive" @click="option[opt][item].unActive">unActive</button>
+                <button v-if="option[opt][item].clear" @click="option[opt][item].clear">clear</button>
               </div>
               <button></button>
             </template>
