@@ -1,6 +1,6 @@
-# ArcGIS 学习-基于 Vue3.0
+# ArcGIS
 
-## Project
+## Project Run
 
 ```
 npm install
@@ -9,9 +9,22 @@ npm run serve
 
 See [Vue Composition API](https://composition-api.vuejs.org/zh/)
 
-## ArcGIS
+See [ArcGIS API for JavaScript 4.x](https://developers.arcgis.com/javascript/latest/api-reference/index.html)
 
-### widget
+## ArcGIS Version
 
-- Zoom：视图缩放控件
-- Compass：指南针控件
+- ❎ `esri-loader` (deprected)
+- ✅ `@arcgis/core`
+
+## ArcGIS API Reference
+
+### Widgets
+
+- Zoom
+- Compass
+
+### Layers
+
+- FeatureLayer
+- ImageryLayer
+- TileLayer

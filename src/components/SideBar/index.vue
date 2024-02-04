@@ -33,7 +33,7 @@
 import { getCurrentInstance } from "vue";
 import option from "@/arcgis/option";
 export default {
-  setup() {
+  setup () {
     return { option };
   },
 };
