@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "npm run copy && vue-cli-service serve",
-    "build": "npm run copy && vue-cli-service build",
-    "lint": "npm run copy && vue-cli-service lint",
-    "copy": "cp -r ./node_modules/@arcgis/core/assets ./public/assets"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
   },
   "dependencies": {
     "@arcgis/core": "^4.28.10",
