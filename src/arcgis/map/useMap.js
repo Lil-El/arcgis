@@ -7,7 +7,7 @@ export default () => {
   if (store.map && store.view) return store;
 
   store.map = new Map({
-    basemap: "hybrid", // streets，hybrid, topo-vector (需要连接 VPN)
+    basemap: "topo-vector", // streets，hybrid(需要连接 VPN), topo-vector
   });
 
   store.view = new MapView({
@@ -15,6 +15,10 @@ export default () => {
     map: store.map,
     center: [106, 34.09042],
     zoom: 3,
+  });
+
+  store.view.on("click", (evt) => {
+    // console.log(evt);
   });
 
   return store;

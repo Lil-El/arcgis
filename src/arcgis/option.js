@@ -1,9 +1,16 @@
+// import widgets
 import useCompass from "./widget/useCompass";
 import useZoom from "./widget/useZoom";
 import useAttribution from "./widget/useAttribution";
 import useLocate from "./widget/useLocate";
 import useMeasure2D, { unUseMeasure2D, clearMeasure2D } from "./widget/useMeasure2D";
 import useMeasureArea2D, { unUseMeasureArea2D, clearMeasureArea2D } from "./widget/useMeasureArea2D";
+
+// import layers
+import useWebTile from "./layer/useWebTile";
+import useTile from "./layer/useTile";
+import useFeature from "./layer/useFeature";
+import useImagery from "./layer/useImagery";
 
 const option = {
   widget: {
@@ -49,23 +56,29 @@ const option = {
     },
   },
   layer: {
+    webTile: {
+      type: "checkbox",
+      label: "WebTile",
+      checked: false,
+      use: useWebTile,
+    },
     tile: {
       type: "checkbox",
       label: "Tile",
       checked: false,
-      use: () => {},
+      use: useTile,
     },
     feature: {
       type: "checkbox",
       label: "Feature",
       checked: false,
-      use: () => {},
+      use: useFeature,
     },
     imagery: {
       type: "checkbox",
       label: "Imagery",
       checked: false,
-      use: () => {},
+      use: useImagery,
     },
   },
 };
