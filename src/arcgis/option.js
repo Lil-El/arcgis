@@ -3,6 +3,7 @@ import useCompass from "./widget/useCompass";
 import useZoom from "./widget/useZoom";
 import useAttribution from "./widget/useAttribution";
 import useLocate from "./widget/useLocate";
+import useLegend from "./widget/useLegend";
 import useMeasure2D, { unUseMeasure2D, clearMeasure2D } from "./widget/useMeasure2D";
 import useMeasureArea2D, { unUseMeasureArea2D, clearMeasureArea2D } from "./widget/useMeasureArea2D";
 
@@ -40,6 +41,12 @@ const option = {
       label: "Locate",
       checked: false,
       use: useLocate,
+    },
+    legend: {
+      type: "checkbox",
+      label: "Legend",
+      checked: false,
+      use: useLegend,
     },
     "measure Length": {
       type: "button",
