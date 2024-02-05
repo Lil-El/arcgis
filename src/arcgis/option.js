@@ -12,6 +12,7 @@ import useWebTile from "./layer/useWebTile";
 import useTile from "./layer/useTile";
 import useFeature from "./layer/useFeature";
 import useImagery from "./layer/useImagery";
+import useImagery2 from "./layer/useImagery2";
 import useMapImage from "./layer/useMapImage";
 import useFields from "./server/useFields";
 import { query, statistics } from "./server/useStatistics";
@@ -86,9 +87,15 @@ const option = {
     },
     imagery: {
       type: "checkbox",
-      label: "Imagery",
+      label: "Imagery(rf-PercentClip)",
       checked: false,
       use: useImagery,
+    },
+    imagery2: {
+      type: "checkbox",
+      label: "Imagery(rf-MinMax)",
+      checked: false,
+      use: useImagery2,
     },
     mapImagery: {
       type: "checkbox",
