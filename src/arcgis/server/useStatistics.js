@@ -22,10 +22,28 @@ export const query = () => {
 };
 
 /**
- * 代码没问题，不知道为啥报400，对比了下，好像是因为 url encode 没有将括号这些转义
  * 数据统计
  */
 export const statistics = () => {
+  /**
+   * URL encode 将 空格转换成了 +，而不是 %20,
+   * 所以导致请求报 400,
+   * 在拦截器中进行处理
+   */
+  axios.interceptors.request.use((config) => {
+    let url = config.url;
+    if (config.method === "get" && config.params) {
+      url += "?"; // 拼接参数
+      // 获取所有参数，通过循环 拼接所有参数，encodeURIComponent对参数编码，
+      Object.keys(config.params).map((key) => {
+        url += `${key}=${encodeURIComponent(config.params[key])}&`;
+      });
+      url = url.substring(0, url.length - 1); // 删除最后一个&字符
+      config.params = {}; // 参数已经存在于 url中
+    }
+    config.url = url;
+    return config;
+  });
   axios
     .get(
       "https://portal.beidouhj.com/server/rest/services/2_榆北_曹家滩/C6100002017111110145309_VectorProduct/MapServer/3/query",

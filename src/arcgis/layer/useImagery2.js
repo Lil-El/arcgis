@@ -84,11 +84,6 @@ export default () => {
         rasterFunction: "Stretch",
         rasterFunctionArguments: {
           StretchType: 5,
-          Statistics: [
-            [50, 200, 56.7, 54.8],
-            [100, 300, 97.5, 94.5],
-            [150, 400, 87.5, 87.3],
-          ],
           Min: 0,
           Max: 255,
         },
