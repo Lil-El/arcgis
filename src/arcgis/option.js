@@ -87,13 +87,13 @@ const option = {
     },
     imagery: {
       type: "checkbox",
-      label: "Imagery(rf-PercentClip)",
+      label: "Imagery(RasterFunction)",
       checked: false,
       use: useImagery,
     },
     imagery2: {
       type: "checkbox",
-      label: "Imagery(rf-MinMax)",
+      label: "Imagery(renderer)",
       checked: false,
       use: useImagery2,
     },

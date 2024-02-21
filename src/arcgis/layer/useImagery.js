@@ -34,6 +34,12 @@ export default () => {
     });
 
     layer.when(() => {
+      /**
+       * 使用 RasterFunction 方式渲染
+       * 通过 ArcGIS 服务内置的光栅函数
+       * 对于例子中的影像切片服务，使用内置的Elevation是正常的
+       * 但是对于北斗的影像服务，使用内置的Elevation总是有问题：不设置Stretch无法设置颜色，但是设置了Stretch图例的数值总是不对
+       */
       const stretchFunction = new RasterFunction({
         functionName: "Stretch",
         functionArguments: {
