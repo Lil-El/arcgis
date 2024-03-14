@@ -29,7 +29,7 @@ export default () => {
       labelingInfo: [statesLabelClass],
       objectIdField: "ObjectID",
       outFields: ["*"], // 查询的字段
-      // 配置的字段，和 graphic 的 attributes 相关联
+      // 配置的字段，和 graphic 的 attributes 相关联; 供 labelClass 使用
       fields: [
         { name: "objectId", type: "oid" },
         { name: "name", type: "string" },
@@ -42,24 +42,61 @@ export default () => {
             longitude: 108.90039062499926,
             latitude: 34.27219171167824,
           },
-          symbol: { // 不生效
-            type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-            color: [0, 255, 0],
-          },
           attributes: {
             name: "Mino",
             date: "2021/2/4",
+            url: "https://xxx.png",
           },
+          // 不生效
+          // symbol: {
+          //   type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+          //   color: [0, 255, 0],
+          // },
         }),
       ],
-      // However, when creating a FeatureLayer from client-side features,
-      // this property must be specified in the layer's constructor along with the source, fields, objectIdField properties.
-      renderer: {
+      // 所有的 graphic 设置同一个图标
+      /* renderer: {
         type: "simple",
         symbol: {
           type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
           color: [255, 0, 0],
         },
+      }, */
+      // 所有的 graphic 设置不同的图标，只根据 name 进行设置
+      /* renderer: {
+        type: "unique-value",
+        field: "name", // value 引用的属性
+        uniqueValueInfos: [
+          {
+            value: "Mino",
+            symbol: {
+              type: "picture-marker",
+              url: "https://xxx.png",
+              width: "20px",
+              height: "20px",
+            },
+          }
+          // ...对应更多 graphic
+        ],
+      }, */
+      // 所有的 graphic 设置不同的图标，只根据 name 和 date 进行设置
+      renderer: {
+        type: "unique-value",
+        field: "name", // value 引用的属性
+        field2: "date",
+        fieldDelimiter: ", ",
+        uniqueValueInfos: [
+          {
+            value: "Mino, 2021/2/4",
+            symbol: {
+              type: "picture-marker",
+              url: "https://xxx.png",
+              width: "20px",
+              height: "20px",
+            },
+          }
+          // ...对应更多 graphic
+        ],
       },
       popupTemplate: {
         title: "This's Title!",
