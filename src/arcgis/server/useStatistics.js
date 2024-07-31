@@ -60,6 +60,7 @@ export const statistics = () => {
           ]),
           f: "pjson",
         },
+        // paramsSerializer: params => qs.stringify(params) luch-request中使用这种方法也可以解决
       }
     )
     .then((res) => {
