@@ -17,6 +17,9 @@ import useMapImage from "./layer/useMapImage";
 import useFields from "./server/useFields";
 import { query, statistics } from "./server/useStatistics";
 
+// import functions
+import useScreen from "./function/useScreen"
+
 const option = {
   widget: {
     zoom: {
@@ -119,6 +122,14 @@ const option = {
       type: "button",
       label: "statistics",
       use: statistics,
+    },
+  },
+  function: {
+    screen: {
+      type: "checkbox",
+      label: "split screen",
+      checked: false,
+      use: useScreen,
     },
   },
 };
